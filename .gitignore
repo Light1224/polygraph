@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+venv/
+.env
+.env.*
+
+# Generated data (rebuild with polygraph fetch / build)
+data/
+*.db
+*.db-journal
+*.graphml
+*.html
+
+# Logs
+*.log
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Local research notes (not part of the app)
+read_cursor/

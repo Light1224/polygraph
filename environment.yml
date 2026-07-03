@@ -1,0 +1,11 @@
+# Single conda env for this project (no .venv).
+#
+#   conda env create -f environment.yml
+#   conda activate polygraph
+#   pip install -e ".[web,embeddings,viz]"
+name: polygraph
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
