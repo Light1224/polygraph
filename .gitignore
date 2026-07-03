@@ -21,7 +21,12 @@ data/
 *.db
 *.db-journal
 *.graphml
+data/*.html
+graph.html
+
+# Web UI (keep static index; ignore generated viz exports elsewhere)
 *.html
+!src/polygraph/web/static/index.html
 
 # Logs
 *.log

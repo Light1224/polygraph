@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Polygraph — Polymarket Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css?v=4" />
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+</head>
+<body>
+    <header>
+    <div class="header-top">
+      <div class="logo">poly<span>graph</span></div>
+      <div class="stats-pill" id="stats-pill">loading…</div>
+      <div class="search-wrap">
+        <input id="search" type="search" placeholder="Search markets — / to focus" autocomplete="off" />
+        <div class="search-results" id="search-results"></div>
+      </div>
+    </div>
+    <div class="header-controls">
+      <div class="controls">
+      <div class="preset-group" role="group" aria-label="Scope presets">
+        <button type="button" class="preset-btn" data-preset="local" title="1 hop · 120 nodes">Local</button>
+        <button type="button" class="preset-btn active" data-preset="near" title="2 hops · 500 nodes">Near</button>
+        <button type="button" class="preset-btn" data-preset="wide" title="4 hops · 1200 nodes">Wide</button>
+        <button type="button" class="preset-btn" data-preset="deep" title="8 hops · 2500 nodes">Deep</button>
+      </div>
+      <label>
+        view
+        <select id="view-mode">
+          <option value="focus">focus (1-hop)</option>
+          <option value="explore" selected>explore</option>
+        </select>
+      </label>
+      <label>
+        hops
+        <select id="depth"></select>
+      </label>
+      <label class="range-label">
+        nodes <span id="max-nodes-val">500</span>
+        <input type="range" id="max-nodes" min="50" max="3000" value="500" step="50" />
+      </label>
+      <label class="check-label">
+        <input type="checkbox" id="show-excludes" /> excludes
+      </label>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="graph-wrap">
+      <div id="graph"></div>
+      <div class="graph-toolbar">
+        <button type="button" id="btn-reset-layout" title="Re-run layout">↻ Layout</button>
+        <button type="button" id="btn-freeze" title="Toggle physics">❄ Freeze</button>
+        <button type="button" id="btn-fit" title="Fit graph to view">⊡ Fit</button>
+      </div>
+      <div class="graph-badge" id="graph-badge"></div>
+      <div class="loading" id="loading">Loading subgraph…</div>
+    </div>
+    <aside>
+      <div class="panel" id="detail-panel">
+        <h2>Selected market</h2>
+        <div class="empty-state" id="detail-empty">
+          Search for a market or click a node. Use <kbd>/</kbd> to search, presets for hop depth.
+        </div>
+        <div class="detail" id="detail" hidden></div>
+        <div class="price-chart-wrap" id="price-chart-wrap" hidden>
+          <div class="label">Price history (30d)</div>
+          <svg id="price-chart" class="price-chart" viewBox="0 0 280 56" preserveAspectRatio="none"></svg>
+          <div class="price-chart-meta" id="price-chart-meta"></div>
+        </div>
+      </div>
+      <div class="panel" id="neighbors-panel" hidden>
+        <h2>Direct neighbors</h2>
+        <div class="neighbors" id="neighbors"></div>
+      </div>
+      <div class="panel">
+        <h2>Edge types <span class="panel-hint">click to filter</span></h2>
+        <div class="legend" id="legend"></div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="/static/app.js?v=4"></script>
+</body>
+</html>
